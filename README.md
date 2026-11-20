@@ -1,2 +1,157 @@
 # WD-INS-005-underwriting-system-
 Web development 
+<!DOCTYPE HTML>
+<html>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Data Alcott</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#0b3d6e,#0b7ea4,#00b4a2);
+  padding:16px;
+}
+.login-box{
+  background:#fff;
+  width:100%;
+  max-width:380px;
+  border-radius:20px;
+  padding:30px 26px;
+  text-align:center;
+  box-shadow:0 10px 40px rgba(0,0,0,.30);
+}
+.icon{font-size:45px}
+.login-box h1{color:#0b3d6e;font-size:22px;margin-top:8px}
+.login-box p{color:#666;font-size:13px;margin:6px 0 18px}
+.demo{
+  background:#eaf6ff;
+  padding:10px;
+  border-radius:10px;
+  font-size:12px;
+  color:#0b3d6e;
+  margin-bottom:16px;
+}
+label{display:block;text-align:left;font-size:13px;font-weight:600;margin:10px 0 5px}
+input{
+  width:100%;
+  padding:12px;
+  border:1.5px solid #dce6f0;
+  border-radius:10px;
+  outline:none;
+  font-size:14px;
+}
+input:focus{border-color:#0b7ea4}
+button{
+  width:100%;
+  padding:13px;
+  margin-top:18px;
+  background:#0b7ea4;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{background:#0b3d6e}
+.err{color:#e74c3c;font-size:13px;margin-top:10px;display:none}
+.success{color:#1db954;font-size:14px;font-weight:bold;margin-top:10px;display:none}
+
+/* Dashboard - Login-ku apparam varum */
+#dashboard{display:none;text-align:center;padding:20px}
+#dashboard h1{color:#0b3d6e}
+.logout{
+  width:auto;
+  padding:10px 20px;
+  background:#e74c3c;
+  border:none;
+  color:#fff;
+  border-radius:20px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<!-- 1. LOGIN PAGE -->
+<div class="login-box" id="Login page">
+  <div class="icon">🛡️</div>
+  <h1>DATA Alcott SYSTEMS</h1>
+  <p>WD-INS-005 • Please Login</p>
+
+  <div class="demo">Demo: <b>admin</b> / <b>admin123</b></div>
+
+  <label>Username</label>
+  <input id="Login user" placeholder="Enter username">
+
+  <label>Password</label>
+  <input id="Login pass" type="password" placeholder="Enter password">
+
+  <button on click="doLogin()">Login →</button>
+
+  <div id="Login err" class="err"> Wrong username or password!</div>
+  <div id="Login ok" class="success"> Login Success! Welcome...</div>
+</div>
+
+<!-- 2. DASHBOARD - Login-ku apparam -->
+<div id="dashboard">
+  <h1> Welcome, Admin!</h1>
+  <p style="margin-top:10px;color:#666">Login success </p>
+  <p style="margin-top:10px">Ithula thaan un Insurance Form varum.</p>
+  <button class="logout" on click="do logout ()">Logout</button>
+</div>
+
+<script>
+// LOGIN FUNCTION
+function Do login(){
+  let u = document.getElementById('Login user').value.trim();
+  let p = document.getElementById('Login pass').value.trim();
+
+  if(u === 'admin' && p === 'admin123'){
+    // Correct
+    document.getElementById('Login err').style.display = 'none';
+    document.getElementById('Login ok').style.display = 'block';
+
+    // 1 sec kazhichu Dashboard kaatu
+    Set timeout(function(){
+      document.getElementById('Login page').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      localStorage.setItem('Logged in','yes');
+    }, 800);
+
+  } else {
+    // Wrong
+    document.getElementById('loginErr').style.display = 'block';
+    document.getElementById('Login ok').style.display = 'none';
+  }
+}
+
+// Enter key press 
+document.getElementById('Login pass').Add event listener('keypress', function(e){
+  if(e.key === 'Enter'){ Do login(); }
+});
+
+// Page open aagum pothu already login pannitangala?
+if(localStorage.getItem('loggedIn') === 'yes'){
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+}
+
+// LOGOUT
+function doLogout(){
+  localStorage.removeItem('loggedIn');
+  location.reload();
+}
+</script>
+</body>
+</html>
+</html>
